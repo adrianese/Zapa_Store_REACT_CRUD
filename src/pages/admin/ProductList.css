@@ -1,0 +1,392 @@
+/* --- Variables de Color (Esquema modificado) --- */
+:root {
+    /* Modo Claro (Light Mode - Blanco apagado/gris claro) */
+    --bg-body: #ebebeb;       /* Fondo más apagado */
+    --bg-body: #ccc8c8;
+    --bg-header-footer: #d5d5d5;
+    --text-color: #333;
+    --form-bg: #e4e2e2;       /* Formulario casi blanco pero suave */
+    --input-border: #bbbbbb;
+    --input-placeholder: #999;
+    --btn-submit-bg: #8bc34a; /* Verde Claro */
+    --btn-submit-text: #333;
+    --switch-bg-off: #ccc;
+    --switch-bg-on: #66bb6a;
+    --switch-circle: #ffffff;
+    --icon-color: #333;
+}
+
+body.dark-mode {
+    /* Modo Oscuro (Dark Mode - Tono Amarronado #333) */
+    --bg-body: #252525;       /* Fondo oscuro, ligeramente amarronado */
+    --bg-header-footer: #333333; /* Color amarronado/gris oscuro para Header/Footer */
+    --text-color: #f0f0f0;    /* Texto casi blanco */
+    --form-bg: #3c3c3c;       /* Formulario un poco más claro que el fondo */
+    --input-border: #777777;
+    --input-placeholder: #aaaaaa;
+    --btn-submit-bg: #8bc34a; /* Verde Claro */
+    --btn-submit-text: #252525;
+    --switch-bg-off: #555;
+    --switch-bg-on: #66bb6a;
+    --switch-circle: #f0f0f0;
+    --icon-color: #f0f0f0;
+}
+
+/* --- Estilos Base (El resto del CSS se mantiene igual) --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    transition: background-color 0.4s, color 0.4s;
+}
+
+header, footer {
+    background-color: var(--bg-header-footer);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    justify-content: center;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+   /* max-width: 500px;*/
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--form-bg);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h3, h4 {
+    color: var(--text-color);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    transition: color 0.4s;
+}
+
+h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    background-color: var(--form-bg);
+    border: none;
+    border-bottom: 2px solid var(--input-border);
+    padding: 10px 0;
+    height: 40px;
+    font-size: 1.1em;
+    color: var(--text-color);
+    outline: none;
+    width: 100%;
+    transition: border-bottom-color 0.3s, background-color 0.4s;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-bottom-color: var(--switch-bg-on);
+}
+
+input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    background-color: var(--btn-submit-bg);
+    color: var(--btn-submit-text);
+    border: none;
+    border-radius: 4px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    width: 50%;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover {
+    background-color: #7cb342; 
+}
+
+.submit-btn:active {
+    transform: scale(0.99);
+}
+
+.dark-mode-switch-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    font-size: 1.4em;
+    -webkit-user-select: none; /* For Safari */
+    user-select: none;
+    color: var(--icon-color);
+    transition: color 0.3s;
+}
+
+.moon-icon {
+    color: var(--icon-color);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 24px;
+    margin: 0 4px; 
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--switch-bg-off);
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    top: 2px;
+    background-color: var(--switch-circle);
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+    background-color: var(--switch-bg-on);
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(21px);
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--switch-bg-on);
+}
+
+
+/* --- Estilos específicos para ProdCard (Nuevo archivo ProdCard.css) --- */
+.admin-container {
+  padding: 20px;
+}
+
+.crear-btn {
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+.productos-lista{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+  justify-content: center;
+  padding: 20px;
+
+}
+
+.producto-card-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.acciones-card {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.acciones-card button {
+  padding: 1.2rem 1.6rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.acciones-card button:first-child {
+  background-color: #ffc107;
+}
+
+.acciones-card button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+.productos-lista {
+grid-template-columns: repeat(auto-fill, 275px);
+justify-content: center; 
+gap: 2rem;
+}
+
+.preview{
+    width: 10rem;
+}
+
+
+
+/*producto card*/
+
+.product-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background-color: #f8f9fa;
+}
+
+.product-form-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+.form-check input {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.boton-verde {
+    background-color: #71b100;
+    border: none;
+    color: #fff;
+    
+    font-weight: 700;
+    margin-top: 2.5rem;
+    padding: 1rem 3rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.boton-verde:hover {
+    background-color: #619800;
+    cursor: pointer;
+}
+
+.boton-amarillo {
+    background-color: #e08709;
+    border: none;
+    color: #fff;
+    
+    font-weight: 700;
+    margin-top: 2.5rem;
+    padding: 1rem 3rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.boton-amarillo:hover {
+    background-color: #c77808;
+    cursor: pointer;
+}
+
+.redondeado {
+    border-radius: 1rem;
+    padding: 1.5rem 3rem;
+    margin: 2.5rem 0rem;
+    align-self: center;
+    margin-right: 4rem;
+}

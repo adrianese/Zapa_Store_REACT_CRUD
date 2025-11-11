@@ -1,0 +1,58 @@
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: var(--form-bg);
+  border-bottom: 1px solid var(--input-border);
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  font-size: 0.95em;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.logout-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none; /* opcional si quieres bloquear hover */
+}
+
+.swal-small {
+  width: 250px !important;
+  padding: 1rem !important;
+}
+
+.swal-title-small {
+  font-size: 1rem !important;
+}
+
+.swal-text-small {
+  font-size: 0.7rem !important;
+}
+
+.swal-button-small {
+  font-size: 0.8rem !important;
+  padding: 6px 12px !important;
+}
+
+
+@media (max-width: 480px) {
+  .swal-small {
+    width: 70% !important;
+    font-size: 0.85rem !important;
+  }
+}

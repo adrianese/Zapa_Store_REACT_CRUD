@@ -1,0 +1,119 @@
+/* --- Contenedor principal --- */
+.product-list-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--form-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.4s;
+}
+
+.product-list-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
+
+/* --- Mensajes de carga y error --- */
+.loading-text,
+.error-text {
+  text-align: center;
+  font-weight: bold;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+/* --- Tarjetas resumen de clientes --- */
+.clientes-resumen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.cliente-card {
+  background-color: var(--btn-submit-bg);
+  color: var(--btn-submit-text);
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cliente-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Encabezado de cliente --- */
+.cliente-header {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* --- Lista de pedidos --- */
+.pedidos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Tarjeta de pedido --- */
+.pedido-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: var(--bg-body);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.4s, border-color 0.4s;
+}
+
+/* --- Sección superior: cliente y factura --- */
+.pedido-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.pedido-left,
+.pedido-right {
+  flex: 1;
+}
+
+.pedido-left p,
+.pedido-right p,
+.pedido-card p {
+  margin: 6px 0;
+  color: var(--text-color);
+}
+
+/* --- Lista de productos --- */
+.pedido-card ul {
+  margin: 10px 0;
+  padding-left: 20px;
+  color: var(--text-color);
+}
+
+.pedido-card li {
+  margin-bottom: 4px;
+}
+
+/* --- Línea final: total y estado --- */
+.pedido-footer-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+button {
+  margin: 2rem;
+}

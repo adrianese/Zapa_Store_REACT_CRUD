@@ -1,0 +1,235 @@
+/* ProductoCard.css */
+
+.producto {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Encabezado de comparación */
+.encabezado-card {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+  text-align: right;
+}
+
+/* Imagen y contenido */
+.anuncio img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-bottom: 1px solid #eee;
+}
+
+.contenido-anuncio {
+  padding: 2rem;
+  line-height: 1.4;
+}
+
+/* Nombre y modelo */
+.producto-nombre {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.modelo {
+  font-size: 1.4rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Precio */
+.precio {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e08709;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Iconos de características */
+.iconos-caracteristicas {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  max-width: 40rem;
+  padding: 0;
+}
+
+.icono-alinear {
+  width: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+}
+
+.icono-actividad,
+.estado-disponible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.icono-actividad img,
+.estado-disponible img {
+  height: 3rem;
+  
+  margin-bottom: 0.5rem;
+}
+
+/* Selector de talle */
+.selector-talle {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+.select-talle{
+  font-size: 1.2rem;
+}
+
+.label-talle {
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.boton-detalle {
+  background-color: #71b100;
+  color: rgb(241, 232, 232);
+  font-weight: bold;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+.boton-detalle:hover {
+  background-color: #5a8c00;
+  color: white;
+}
+
+.boton-naranja {
+  background-color: #e08709;
+  border: none;
+  color: #fff;
+ /* display: block;*/
+  font-weight: 700;
+  margin: 1.5rem 0 auto;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.boton-naranja:hover {
+  background-color: #c77808;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contenido-anuncio {
+    padding: 1.5rem;
+  }
+
+  .producto-nombre {
+    font-size: 1.8rem;
+  }
+
+  .precio {
+    font-size: 1.5rem;
+  }
+
+  .boton-naranja {
+    font-size: 1.4rem;
+  }
+}
+
+/* === Responsive: Móviles hasta 480px === */
+@media (max-width: 480px) {
+  .producto {
+    width: 100%;
+    border-radius: 3px;
+    padding: 1rem;
+  }
+
+  .producto-nombre {
+    font-size: 2.4rem;
+  }
+
+  .modelo {
+    font-size: 1.2rem;
+  }
+
+  .precio {
+    font-size: 2.4rem;
+  }
+
+  .boton-naranja {
+    padding: 0.8rem 2rem;
+    font-size: 1.4rem;
+  }
+
+  .selector-talle {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+/* === Responsive: Tablets entre 481px y 768px === */
+@media (min-width: 481px) and (max-width: 768px) {
+  .producto {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .producto-nombre {
+    font-size: 2.8rem;
+  }
+
+  .precio {
+    font-size: 2.6rem;
+  }
+}
+
+/* === Responsive: Desktop desde 769px en adelante === */
+@media (min-width: 769px) {
+  .producto {
+    max-width: 300px;
+  }
+}

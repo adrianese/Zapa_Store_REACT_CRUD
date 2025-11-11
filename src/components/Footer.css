@@ -1,0 +1,104 @@
+
+/* Sección principal */
+.footer .seccion {
+  background-color: #333;;
+  padding: 3rem 2rem;
+  margin-top: 2.5rem;
+}
+
+/* Navegación */
+.footer-nav {
+  margin-bottom: 2rem;
+}
+
+.navegacion {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.navegacion a {
+  color: #CCC;
+  font-size: 1.6rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navegacion a:hover {
+  color: #af6e12;
+}
+
+
+/* copy naranja */
+.contenedor-copy {
+  display: flex;
+  flex-direction: row;
+ /* justify-content: center;
+  align-items: center;*/
+  background-color: #e08709;
+  padding: 2rem 10rem;
+  min-width: 100vw;
+  flex-wrap: wrap;
+}
+
+
+.copyright {
+  font-size: 1.4rem;
+  color: #dfd8d8;
+  margin: 0;
+}
+
+.icono {
+  width: 3rem;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.icono:hover {
+  transform: scale(1.1);
+}
+
+
+.bi-github {
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.bi-github:hover {
+  color: #000; /* Mantiene el color original en hover */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contenedor-copy {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navegacion {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+/* Iconos de Contacto (correo y GitHub) */
+.iconos-contacto {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+
+.footer-principal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 2rem;
+}

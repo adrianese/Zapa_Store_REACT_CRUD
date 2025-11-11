@@ -1,0 +1,11 @@
+.card-pedido {
+
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.container{
+  min-height: 35rem;
+}

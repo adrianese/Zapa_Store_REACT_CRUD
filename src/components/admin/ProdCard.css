@@ -1,0 +1,135 @@
+/* --- Contenedor general de la tarjeta --- */
+.prod-card {
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--form-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s, border-color 0.3s;
+  gap: 0;
+}
+
+/* --- Imagen del producto --- */
+.prod-img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.prod-img img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* --- Información principal --- */
+.prod-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.prod-nombre {
+  font-size: 2.6rem;
+  margin: 0;
+  color: var(--text-color);
+  margin-bottom: 6px;
+}
+
+
+
+.prod-label {
+  font-size: 0.95em;
+  color: var(--text-color);
+}
+
+.precio-bold {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+
+.prod-card p {
+  margin: 3px 10px;
+  font-size: 1.3rem; /* más pequeño que antes */
+  line-height: 1.25;
+  color: var(--text-color);
+}
+
+.prod-card ul {
+  margin: 8px 0;
+  padding-left: 18px;
+}
+
+.prod-card li {
+  margin-bottom: 2px;
+  font-size: 0.9em;
+  line-height: 1.3;
+}
+
+
+
+.badge-disponible {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.badge-agotado {
+  color: #f44336;
+  font-weight: bold;
+}
+
+/* --- Acordeones de detalles --- */
+.prod-details {
+  margin: 12px 0;
+}
+summary{
+  font-size: 1.4rem;
+  margin-left: 1.6rem;
+}
+
+.hover-expand summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.detalle-text {
+  margin-top: 6px;
+  font-size: 0.5rem;
+  color: var(--text-color);
+}
+
+
+
+/* --- Botones de acción --- */
+.acciones-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.acciones-card button {
+  flex: 1;
+  padding: 8px 30px; /* antes era 8px 12px */
+  font-size: 0.9em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 20px;
+  background-color: var(--btn-submit-bg);
+  color: var(--btn-submit-text);
+  transition: background-color 0.3s;
+}
+.acciones-card button:hover {
+  background-color: var(--switch-bg-on);
+}
+
