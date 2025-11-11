@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-/*import { useAuth } from "../context/AuthProviderAuth";*/
 import { useAuth } from "../context/AuthProvider";
 import Swal from "sweetalert2";
 import "./RegisterLogin.css";
@@ -56,8 +55,6 @@ const Login = () => {
       // Redirección según rol
       if (usuario.rol === "admin") {
         navigate("/admin/board");
-      } else {
-        navigate("/carrito");
       }
     } catch (error) {
       console.error("Error de login:", error);

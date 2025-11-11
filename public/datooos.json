@@ -52,5 +52,13 @@
   { "id": "21", "nombre": "Niko", "imagen": "NI-3469.jpg", "actividad": "walking", "disponible": true, "precio": 70500 },
   { "id": "22", "nombre": "Adedos", "imagen": "AD-2241.jpg", "actividad": "trekking", "disponible": true, "precio": 66000 },
   { "id": "23", "nombre": "Adedos", "imagen": "AD-7890.jpg", "actividad": "running", "disponible": true, "precio": 97500 },
-  { "id": "24", "nombre": "Niko", "imagen": "NI-6228.jpg", "actividad": "running", "disponible": true, "precio": 99500 }
+  { "id": "24", "nombre": "Niko", "imagen": "NI-6228.jpg", "actividad": "running", "disponible": true, "precio": 99500 },
+  
+  { "id": "25", "nombre": "TorPe", "imagen": "TO-4821.jpg", "actividad": "walking", "disponible": true, "precio": 68900 },
+  { "id": "26", "nombre": "TorPe", "imagen": "TO-9134.jpg", "actividad": "trekking", "disponible": true, "precio": 73200 },
+  { "id": "27", "nombre": "TorPe", "imagen": "TO-1578.jpg", "actividad": "running", "disponible": true, "precio": 81000 },
+  { "id": "28", "nombre": "TorPe", "imagen": "TO-6042.jpg", "actividad": "walking", "disponible": true, "precio": 67500 },
+  { "id": "29", "nombre": "TorPe", "imagen": "TO-2897.jpg", "actividad": "trekking", "disponible": true, "precio": 74500 },
+  { "id": "30", "nombre": "TorPe", "imagen": "TO-7310.jpg", "actividad": "running", "disponible": true, "precio": 82000 }
+
 ]

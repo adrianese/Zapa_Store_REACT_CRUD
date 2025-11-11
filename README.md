@@ -129,5 +129,6 @@ Se Procesan las compras y se las vincula al usuario logueado.
 
 #### 6. `PedidosAdmin.jsx`
 - GET `/users`
-- SE muestra una tabla con: ID, usuario, fecha, total, productos, estado
+- SE muestra una tabla con: ID, usuario, fecha, total, productos, estado, correspondiente 
+    al historial de pedidos realizados.
 - Filtro por usuarios con botones y cards.

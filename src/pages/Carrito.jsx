@@ -14,9 +14,12 @@ const Carrito = () => {
   const [password, setPassword] = useState("");
   const [formEnviado, setFormEnviado] = useState(false);
 
+  // Sincronizar carrito desde localStorage al montar
   useEffect(() => {
-    setEmail("");
-    setPassword("");
+    const carritoGuardado = localStorage.getItem("carrito");
+    if (carritoGuardado) {
+      setCarrito(JSON.parse(carritoGuardado));
+    }
   }, []);
 
   const total = carrito.reduce((acc, item) => acc + item.precio, 0);
@@ -32,18 +35,26 @@ const Carrito = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     const resultado = await login(email, password, "usuario");
 
-    if (resultado.exito && resultado.rol === "usuario") {
+    if (!resultado.exito) {
+      Swal.fire({
+        icon: "error",
+        title: "Error de autenticación",
+        text: resultado.mensaje || "Correo o contraseña incorrectos.",
+      });
+      return;
+    }
+
+    if (resultado.rol === "usuario") {
       Swal.fire({
         icon: "success",
         title: "¡Bienvenido!",
-        text: "Redirigiendo a tus compras...",
+        text: "Ya podés confirmar tu compra.",
         timer: 1500,
         showConfirmButton: false,
       });
-      navigate("/mis-compras");
+      // No redirigir, se mostrará el formulario automáticamente
     } else if (resultado.rol === "admin") {
       Swal.fire({
         icon: "error",
@@ -56,8 +67,8 @@ const Carrito = () => {
     } else {
       Swal.fire({
         icon: "error",
-        title: "Error de autenticación",
-        text: resultado.mensaje || "Correo o contraseña incorrectos.",
+        title: "Rol no reconocido",
+        text: "Tu rol no tiene acceso a esta sección.",
       });
     }
   };
@@ -183,7 +194,7 @@ const Carrito = () => {
               <fieldset>
                 <legend>Confirmación de Pedido</legend>
                 <p>
-                  <strong> Nombre:</strong> {usuario.nombre}
+                  <strong>Nombre:</strong> {usuario.nombre}
                 </p>
                 <p>
                   <strong>📧 Email:</strong> {usuario.email}
@@ -191,7 +202,6 @@ const Carrito = () => {
 
                 <label htmlFor="mensaje">Resumen del Pedido</label>
                 <textarea
-                  name="mensaje"
                   id="mensaje"
                   defaultValue={`Tu Pedido:\n\n${resumenPedido}\n\nTotal: $${total.toLocaleString(
                     "es-AR"
@@ -214,9 +224,9 @@ const Carrito = () => {
 
       <p className="link-text">
         ¿No estás registrado?{" "}
-        <button className="boton-verde">
-          <Link to="/register">Registrate</Link>
-        </button>
+        <Link to="/register" className="boton-verde">
+          Registrate
+        </Link>
       </p>
     </div>
   );

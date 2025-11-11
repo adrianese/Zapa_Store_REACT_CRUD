@@ -48,7 +48,7 @@
 
 .columna:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color:  #e3cbaa;;
+    background-color:  #f1d8c0;;
 }
 
 /* Descripciones */
@@ -183,4 +183,18 @@
     .parrafo {
         font-size: 1.3rem;
     }
+}
+
+
+/* Espaciado horizontal entre columnas */
+.row.productos {
+  display: flex;
+  gap: 1rem; /* o 1rem si preferís más compacto */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.columna {
+  flex: 1 1 30%;
+  min-width: 200px;
 }

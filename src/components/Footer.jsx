@@ -34,7 +34,7 @@ function Footer() {
           </a>
 
           <a
-            href="https://github.com/adrianese/Zapa_Store_REACT"
+            href="https://github.com/adrianese/Zapa_Store_REACT_CRUD"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub de Adrianese"

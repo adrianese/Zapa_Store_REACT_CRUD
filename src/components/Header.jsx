@@ -6,10 +6,11 @@ import { useAuth } from "../context/AuthProvider";
 import "./Header.css";
 
 const Header = () => {
+
   const navigate = useNavigate();
-  const handleLogout = () => {
-    logout(); // tu lógica de cierre de sesión
-    navigate("/productos"); // redirige al inicio
+  const handleLogout = async () => {
+  await logout(); // espera que se complete el logout
+  navigate("/"); // redirige al inicio
   };
   const { carrito } = useContext(CarritoContext);
   const { isAuthenticated, usuario, logout } = useAuth();
