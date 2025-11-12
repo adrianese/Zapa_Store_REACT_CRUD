@@ -30,6 +30,7 @@ La aplicación está diseñada para ser una plataforma de comercio electrónico 
 *   **Páginas Dinámicas:** Incluye secciones informativas con Detalles de Productos y un formulario de "Inicio de Sesión".
 *   **Diseño Responsivo:** La interfaz se adapta a diferentes tamaños de pantalla, desde dispositivos móviles hasta computadoras de escritorio, gracias al uso de Media Queries.
 
+```
 Formato Basico del Proyecto:
 
 src/
@@ -66,7 +67,7 @@ src/
 │   ├── AuthProvider.jsx
 │   └── CarritoProvider.jsx
 
-
+```
 
 #
 
