@@ -108,9 +108,13 @@ const Register = () => {
         </div>
       </form>
       <p className="link-text">
-        ¿Ya tenés una cuenta? <Link to="/login">Ingresá</Link>
+        ¿Ya tenés una cuenta? 
       </p>
+        <button className="boton-azul">
+        <Link to="/login">Ingresá Aquí</Link>
+      </button>
     </div>
+    
   );
 };
 

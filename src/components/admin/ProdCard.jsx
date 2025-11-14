@@ -113,8 +113,8 @@ const ProdCard = ({ producto, onDelete }) => {
 
       {/* Botones */}
       <div className="acciones-card">
-        <button onClick={() => navigate(`/admin/update/${id}`)}>✏️ Editar</button>
-        <button onClick={handleDelete}>🗑️ Borrar</button>
+        <button onClick={() => navigate(`/admin/update/${id}`)}>Editar</button>
+        <button onClick={handleDelete}>Borrar</button>
       </div>
     </div>
   );

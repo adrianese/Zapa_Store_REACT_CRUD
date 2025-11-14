@@ -59,9 +59,9 @@
 /* Sección principal */
 .formulario-seccion {
     background-color: #fce8ca;;
-    padding: 3rem 2rem;
+   /* padding: 3rem 2rem;*/
     max-width: 800px;
-    margin: 3rem auto;
+   /* margin: 3rem auto;*/
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
@@ -72,6 +72,7 @@
     font-weight: 300;
     margin-bottom: 2rem;
     text-align: center;
+    color: #333;
 }
 
 /* Formulario */

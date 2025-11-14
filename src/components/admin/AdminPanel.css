@@ -1,0 +1,60 @@
+.tabs-admin {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+
+
+.logout-btn {
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.logout-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tabs-admin {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.tab-btn {
+  background-color: var(--form-bg);
+  color: var(--text-color);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-btn:hover {
+  background-color: var(--btn-submit-bg);
+  color: var(--btn-submit-text);
+}
+
+.tab-btn.active {
+  background-color: var(--btn-submit-bg);
+  color: var(--btn-submit-text);
+  font-weight: bold;
+}

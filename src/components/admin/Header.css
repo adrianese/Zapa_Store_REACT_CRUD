@@ -5,6 +5,7 @@
   padding: 16px 24px;
   background-color: var(--form-bg);
   border-bottom: 1px solid var(--input-border);
+  min-height: 16rem;
 }
 
 .logout-btn {
@@ -14,14 +15,14 @@
   padding: 10px 18px;
   font-size: 0.95em;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .logout-btn:hover {
-  background-color: #c82333;
+  background-color: #de4353;
   transform: scale(1.05);
 }
 
@@ -31,28 +32,72 @@
   pointer-events: none; /* opcional si quieres bloquear hover */
 }
 
-.swal-small {
-  width: 250px !important;
-  padding: 1rem !important;
+
+.header-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-header-footer);
+  padding: 15px 25px;
+  gap: 15px;
+  transition: background-color 0.4s;
 }
 
-.swal-title-small {
-  font-size: 1rem !important;
+/* Estilo base para todos los hijos */
+.header-top h1,
+.tabs-admin,
+.logout-btn,
+.dark-mode-switch-group {
+  flex-shrink: 0;
 }
 
-.swal-text-small {
-  font-size: 0.7rem !important;
-}
-
-.swal-button-small {
-  font-size: 0.8rem !important;
-  padding: 6px 12px !important;
-}
-
-
+/*  Hasta 480px: todo en columna */
 @media (max-width: 480px) {
-  .swal-small {
-    width: 70% !important;
-    font-size: 0.85rem !important;
+  .header-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tabs-admin {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .logout-btn,
+  .dark-mode-switch-group {
+    align-self: center;
+  }
+}
+
+/*  Hasta 768px: h1 arriba, luego nav, luego acciones */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tabs-admin {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logout-btn,
+  .dark-mode-switch-group {
+    align-self: center;
+  }
+}
+
+/*  Desde 769px: todo en fila */
+@media (min-width: 769px) {
+  .header-top {
+    flex-direction: row;
+  }
+
+  .tabs-admin {
+    display: flex;
+    gap: 12px;
   }
 }

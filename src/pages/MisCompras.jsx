@@ -1,7 +1,5 @@
-// src/pages/MisCompras.jsx
 import React, { useEffect, useState } from "react";
 import "./MisCompras.css";
-/*import { useAuth } from "../context/AuthProviderAuth";*/
 import { useAuth } from "../context/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -34,37 +32,52 @@ const MisCompras = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="container">
-      
-        <p>Debes iniciar sesión para ver tus compras.</p>
-        </div>
+      <div className="miscompras-container">
+        <p className="error-text">Debes iniciar sesión para ver tus compras.</p>
+      </div>
     );
   }
 
   return (
-    <div className="container">
-      <h2>Mis Compras</h2>
+    <div className="miscompras-container">
+      <h2 className="miscompras-title">Mis Compras</h2>
       {pedidos.length === 0 ? (
-        <p>No tenés compras registradas.</p>
+        <p className="loading-text">No tenés compras registradas.</p>
       ) : (
-        pedidos.map((pedido) => (
-          <div key={pedido.id} className="card-pedido">
-            <h3>Factura: {pedido.factura}</h3>
-            <p>Fecha: {pedido.fecha}</p>
-            <p>Estado: {pedido.estado}</p>
-            <p>Total: ${pedido.total.toLocaleString("es-AR")}</p>
-            <ul>
-              {console.log(pedido)}
-              {pedido.productos.map((prod, index) => (
-                <li key={index}>
-                  {prod.nombre} - Modelo: {prod.imagen.split(".")[0]} -- Talle: {prod.talle} -
-                  Cantidad: {prod.cantidad} - $
-                  {prod.precio.toLocaleString("es-AR")}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
+        <div className="pedidos-lista">
+          {pedidos.map((pedido) => (
+            <div key={pedido.id} className="pedido-card">
+              <div className="pedido-top">
+                <div className="pedido-left">
+                  <p>
+                    <strong>Factura:</strong> {pedido.factura}
+                  </p>
+                  <p>
+                    <strong>Fecha:</strong> {pedido.fecha}
+                  </p>
+                </div>
+                <div className="pedido-right">
+                  <p>
+                    <strong>Estado:</strong> {pedido.estado}
+                  </p>
+                  <p>
+                    <strong>Total:</strong> $
+                    {pedido.total.toLocaleString("es-AR")}
+                  </p>
+                </div>
+              </div>
+              <ul>
+                {pedido.productos.map((prod, index) => (
+                  <li key={index}>
+                    {prod.nombre} - Modelo: {prod.imagen.split(".")[0]} — Talle:{" "}
+                    {prod.talle} — Cantidad: {prod.cantidad} — $
+                    {prod.precio.toLocaleString("es-AR")}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

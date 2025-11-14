@@ -17,8 +17,12 @@ const ProductForm = () => {
   const [details, setDetails] = useState([]);
   const [errores, setErrores] = useState({});
   const [preview, setPreview] = useState(null);
+  const [sugerencias, setSugerencias] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const soloLetrasRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+  const soloEnterosRegex = /^\d+$/;
 
   const validarImagen = (nombreArchivo, nombreMarca) => {
     if (!nombreArchivo) return false;
@@ -36,15 +40,9 @@ const ProductForm = () => {
         const detailsData = await response.json();
         setDetails(detailsData);
       } catch (error) {
-        console.error("Error al cargar detalles:", error);
-        Swal.fire(
-          "Error",
-          "No se pudieron cargar los detalles del producto.",
-          "error"
-        );
+        Swal.fire("Error", "No se pudieron cargar los detalles.", "error");
       }
     };
-
     fetchDetails();
   }, []);
 
@@ -64,60 +62,49 @@ const ProductForm = () => {
           );
 
           const actividadText = matchedDetail?.actividad_apta?.[0] || "";
-          const materialesText =
-            matchedDetail?.beneficios_materiales?.[0] || "";
+          const materialesText = matchedDetail?.beneficios_materiales?.[0] || "";
 
-          setProduct({
-            ...productData,
-            actividadText,
-            materialesText,
-          });
-
+          setProduct({ ...productData, actividadText, materialesText });
           setPreview(`/img/${productData.imagen}`);
         } catch (error) {
-          console.error("Error al cargar producto:", error);
-          Swal.fire(
-            "Error",
-            "No se pudo cargar el producto para editar.",
-            "error"
-          );
+          Swal.fire("Error", "No se pudo cargar el producto.", "error");
           navigate("/admin/board");
         }
       }
     };
-
     fetchProductData();
   }, [id, details, navigate]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const nuevoValor = type === "checkbox" ? checked : value;
-
-    // Actualizamos el campo editado
     let updatedProduct = { ...product, [name]: nuevoValor };
 
-    // Si se está creando un producto y se modifica el nombre
-    if (name === "nombre" && !id) {
-      const detallesArray = details.productos_deportivos || [];
+ if (name === "nombre") {
+   const detallesArray = details.productos_deportivos || [];
+   const input = value.toLowerCase();
 
-      const matchedDetail = detallesArray.find(
-        (d) => d.marca.toLowerCase() === value.toLowerCase()
-      );
+   const coincidencias = detallesArray
+     .filter((d) => d.marca.toLowerCase().includes(input))
+     .map((d) => d.marca);
 
-      if (matchedDetail) {
-        updatedProduct = {
-          ...updatedProduct,
-          actividadText: matchedDetail.actividad_apta?.[0] || "",
-          materialesText: matchedDetail.beneficios_materiales?.[0] || "",
-        };
-      } else {
-        updatedProduct = {
-          ...updatedProduct,
-          actividadText: "",
-          materialesText: "",
-        };
-      }
-    }
+   setSugerencias(coincidencias.slice(0, 5));
+
+   const matchedDetail = detallesArray.find(
+     (d) => d.marca.toLowerCase() === input
+   );
+
+   updatedProduct.actividadText = matchedDetail?.actividad_apta?.[0] || "";
+   updatedProduct.materialesText =
+     matchedDetail?.beneficios_materiales?.[0] || "";
+
+   // Autocompletar imagen si el nombre tiene al menos 2 letras
+   if (value.length >= 2) {
+     const prefijo = value.slice(0, 2).toUpperCase();
+     updatedProduct.imagen = `${prefijo}-.jpg`;
+     setPreview(`/img/${prefijo}-.jpg`);
+   }
+ }
 
     if (name === "imagen") {
       setPreview(`/img/${nuevoValor}`);
@@ -131,16 +118,20 @@ const ProductForm = () => {
     e.preventDefault();
     const nuevosErrores = {};
 
-    if (!product.nombre.trim()) nuevosErrores.nombre = true;
-    if (!product.actividad.trim()) nuevosErrores.actividad = true;
-    if (!product.precio || isNaN(Number(product.precio)))
+    if (!product.nombre.trim() || !soloLetrasRegex.test(product.nombre.trim()))
+      nuevosErrores.nombre = true;
+
+    if (!product.actividad.trim() || !soloLetrasRegex.test(product.actividad.trim()))
+      nuevosErrores.actividad = true;
+
+    if (!product.precio.trim() || !soloEnterosRegex.test(product.precio.trim()))
       nuevosErrores.precio = true;
-    if (!product.imagen || !validarImagen(product.imagen, product.nombre))
+
+    if (!product.imagen.trim() || !validarImagen(product.imagen.trim(), product.nombre.trim()))
       nuevosErrores.imagen = true;
 
     if (Object.keys(nuevosErrores).length > 0) {
       setErrores(nuevosErrores);
-
       const campos = Object.keys(nuevosErrores)
         .map((campo) => `• ${campo.charAt(0).toUpperCase() + campo.slice(1)}`)
         .join("<br/>");
@@ -150,17 +141,13 @@ const ProductForm = () => {
         html: `Por favor completá correctamente los siguientes campos:<br/><br/>${campos}`,
         icon: "warning",
       });
-
       return;
     }
-
-  
 
     const productoFinal = {
       ...product,
       disponible: product.disponible === true || product.disponible === "true",
     };
-
 
     const url = id
       ? `https://68e448c88e116898997b75e3.mockapi.io/api/productos/products/${id}`
@@ -176,14 +163,9 @@ const ProductForm = () => {
 
       if (!response.ok) throw new Error("Error en la operación");
 
-      Swal.fire(
-        "Éxito",
-        `Producto ${id ? "actualizado" : "creado"} correctamente.`,
-        "success"
-      );
+      Swal.fire("Éxito", `Producto ${id ? "actualizado" : "creado"} correctamente.`, "success");
       navigate("/admin/board");
     } catch (error) {
-      console.error("Error al enviar el formulario:", error);
       Swal.fire("Error", "Hubo un problema al enviar los datos.", "error");
     }
   };
@@ -193,7 +175,7 @@ const ProductForm = () => {
       <h2>{id ? "Editar Producto" : "Crear Producto"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Nombre</label>
+          <label>Nombre o Marca</label>
           <input
             type="text"
             name="nombre"
@@ -202,6 +184,21 @@ const ProductForm = () => {
             className={errores.nombre ? "input-error" : ""}
             required
           />
+          {product.nombre && sugerencias.length > 0 && (
+            <ul className="sugerencias-lista">
+              {sugerencias.map((sug, index) => (
+                <li
+                  key={index}
+                  onClick={() => {
+                    setProduct((prev) => ({ ...prev, nombre: sug }));
+                    setSugerencias([]);
+                  }}
+                >
+                  {sug}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className="form-group">
           <label>Actividad</label>
@@ -244,20 +241,14 @@ const ProductForm = () => {
         )}
         <div className="form-group">
           <label>Descripción de actividad</label>
-          <textarea
-            name="actividadText"
-            value={product.actividadText}
-            readOnly
-          />
+          <textarea name="actividadText" value={product.actividadText} readOnly />
         </div>
         <div className="form-group">
           <label>Materiales</label>
-          <textarea
-            name="materialesText"
-            value={product.materialesText}
-            readOnly
-          />
+          <textarea name="materialesText" value={product.materialesText} readOnly />
         </div>
+        
+
         <div className="radio-group">
           <label>
             <input
@@ -290,10 +281,10 @@ const ProductForm = () => {
             className="boton-verde redondeado"
             onClick={() => navigate(-1)}
           >
-             Volver
+            Volver
           </button>
           <button type="submit" className="boton-verde redondeado">
-            {id ? " Actualizar Producto" : " Crear Producto"}
+            {id ? "Actualizar Producto" : "Crear Producto"}
           </button>
         </div>
       </form>
@@ -301,4 +292,4 @@ const ProductForm = () => {
   );
 };
 
-export default ProductForm;
+export default ProductForm;                

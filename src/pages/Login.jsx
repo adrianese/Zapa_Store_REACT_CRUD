@@ -52,9 +52,15 @@ const Login = () => {
         return;
       }
 
-      // Redirección según rol
+      // ✅ Guardar estado solo si login fue exitoso
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("role", usuario.rol);
+
+      // ✅ Redirección según rol
       if (usuario.rol === "admin") {
         navigate("/admin/board");
+      } else {
+        navigate("/carrito"); // o la ruta que uses para usuarios
       }
     } catch (error) {
       console.error("Error de login:", error);

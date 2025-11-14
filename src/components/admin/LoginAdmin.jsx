@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
-
 import Swal from "sweetalert2";
 
 const LoginAdmin = () => {
@@ -10,13 +9,12 @@ const LoginAdmin = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  localStorage.setItem("isLoggedIn", "true");
-  localStorage.setItem("role", "admin"); // o "user"
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await login(email, password, "admin");
-    if (success) {
+
+    const { exito, rol, mensaje } = await login(email, password);
+
+    if (exito && rol === "admin") {
       Swal.fire({
         title: "Bienvenido",
         text: "Acceso concedido al panel de administración.",
@@ -27,8 +25,8 @@ const LoginAdmin = () => {
       navigate("/admin/board");
     } else {
       Swal.fire({
-        title: "Credenciales incorrectas",
-        text: "Verificá tu correo y contraseña.",
+        title: "Acceso denegado",
+        text: "Solo administradores pueden ingresar al panel.",
         icon: "error",
       });
     }
@@ -36,7 +34,7 @@ const LoginAdmin = () => {
 
   return (
     <div className="cont-formulario">
-      <h2>Iniciar Sesión</h2>
+      <h2>Iniciar Sesión como Administrador</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"

@@ -1,11 +1,78 @@
-.card-pedido {
-
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+/* --- Contenedor principal --- */
+.miscompras-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--form-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.4s;
 }
-.container{
-  min-height: 35rem;
+
+/* --- Título --- */
+.miscompras-title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
+
+/* --- Mensajes de carga y error --- */
+.loading-text,
+.error-text {
+  text-align: center;
+  font-weight: bold;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+/* --- Lista de pedidos --- */
+.pedidos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Tarjeta de pedido --- */
+.pedido-card {
+  padding: 20px;
+  background-color: var(--bg-body);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.4s, border-color 0.4s;
+}
+
+/* --- Sección superior --- */
+.pedido-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.pedido-left,
+.pedido-right {
+  flex: 1;
+}
+
+.pedido-left p,
+.pedido-right p,
+.pedido-card p {
+  margin: 6px 0;
+  color: var(--text-color);
+}
+
+/* --- Lista de productos --- */
+.pedido-card ul {
+  margin: 10px 0;
+  padding-left: 20px;
+  color: var(--text-color);
+}
+
+.pedido-card li {
+  margin-bottom: 4px;
+}
+
+/* --- Botones globales --- */
+button {
+  margin: 2rem;
 }

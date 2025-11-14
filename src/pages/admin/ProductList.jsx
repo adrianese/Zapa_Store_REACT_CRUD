@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import ProdCard from "../../components/admin/ProdCard";
 import { useAuth } from "../../context/AuthProvider";
 import "./ProductList.css";
 
 
 const ProductList = () => {
-  const navigate = useNavigate();
+ 
   const { usuario } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ const ProductList = () => {
         const detallesMap = new Map(detallesArray.map((d) => [d.marca, d]));
 
         const productosConDetalles = productsData.map((p) => {
-          const detalle = detallesMap.get(p.nombre); // ahora usamos p.nombre para buscar por marca
+          const detalle = detallesMap.get(p.nombre); //  usar p.nombre para buscar por marca
 
           return {
             ...p,
@@ -74,13 +74,10 @@ const ProductList = () => {
 
   return (
     <div className="product-list">
-      <h2>Bienvenido, {usuario?.nombre}</h2>
-      <button onClick={() => navigate("/admin/create")} className="boton-amarillo ">
-        Crear Nuevo Producto
-      </button>
-      <button onClick={() => navigate("/admin/orders")} className="boton-amarillo ">
-      Ver Órdenes
-      </button>
+      <h4 className="welcome">
+        Bienvenido, {usuario?.nombre}
+      </h4>
+
       <h1>Lista de Productos</h1>
       <div className="productos-lista">
         {products.map((product) => (

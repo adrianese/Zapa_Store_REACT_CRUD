@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { CarritoContext } from "../context/CarritoContext";
 import "./Footer.css";
 
 function Footer() {
-  /*const { carrito } = useContext(CarritoContext);*/
 
   return (
     <footer className="footer footer-principal">

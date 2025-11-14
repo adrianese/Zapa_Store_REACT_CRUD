@@ -22,19 +22,21 @@ textarea {
 }
 
 textarea {
-  min-height: 80px; /* ✅ Altura ampliada */
+  min-height: 80px; 
   resize: vertical;
 }
 
 /* Etiquetas y grupos */
 .form-group {
- /* margin-bottom: 0.5rem;*/
+  margin-bottom: 0.1rem;
 }
 
 .form-group label {
   display: block;
  /* margin-bottom: 0.6rem;*/
   font-weight: bold;
+  color: var(--text-color);
+  
 }
 
 /* Validación visual */
@@ -91,8 +93,8 @@ textarea {
 }
 
 .submit-btn:hover {
-  background-color: #689f38; /* ✅ más contraste */
-  transform: translateY(-1px); /* leve elevación */
+  background-color: #689f38; 
+  transform: translateY(-1px); 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -119,4 +121,36 @@ textarea {
     padding: 1.5rem 3rem;
     margin: 2.5rem 0rem;
     align-self: center;
+}
+
+
+/* Validación visual */
+.input-error {
+  border-color: red;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+/* Sugerencias de autocompletado */
+.sugerencias-lista {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  max-height: 120px;
+  overflow-y: auto;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+}
+
+.sugerencias-lista li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.sugerencias-lista li:hover {
+  background-color: #e0f0ff;
 }

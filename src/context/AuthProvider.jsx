@@ -3,15 +3,27 @@ import AuthContext from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
+  const [cargando, setCargando] = useState(true);
 
   // Cargar usuario desde localStorage al iniciar
-useEffect(() => {
-  const storedUser = localStorage.getItem("usuario");
-  if (storedUser) {
-    const parsedUser = JSON.parse(storedUser);
-    setUsuario(parsedUser);
-  }
-}, []);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("usuario");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        if (parsedUser?.email && parsedUser?.rol) {
+          setUsuario(parsedUser);
+        }
+      } catch (error) {
+        console.error("Error al parsear usuario:", error);
+        localStorage.removeItem("usuario");
+      }
+    }
+    setCargando(false);
+  }, []);
+
+  // Mostrar pantalla de carga mientras se verifica autenticación
+  if (cargando) return <div>Cargando autenticación...</div>;
 
   const login = async (email, password) => {
     try {
@@ -24,34 +36,25 @@ useEffect(() => {
         (u) => u.email === email && u.password === password
       );
 
-      // Usuario válido en MockAPI
       if (usuarioEncontrado) {
-        setUsuario(usuarioEncontrado);
-        localStorage.setItem("usuario", JSON.stringify(usuarioEncontrado));
+        // Limpiar el objeto antes de guardar
+        const usuarioLimpio = {
+          id: usuarioEncontrado.id,
+          nombre: usuarioEncontrado.nombre,
+          email: usuarioEncontrado.email,
+          rol: usuarioEncontrado.rol || "usuario",
+        };
+
+        setUsuario(usuarioLimpio);
+        localStorage.setItem("usuario", JSON.stringify(usuarioLimpio));
+
         return {
           exito: true,
-          rol: usuarioEncontrado.rol || "usuario",
+          rol: usuarioLimpio.rol,
           mensaje: "Inicio de sesión exitoso",
         };
       }
 
-      // Fallback para admin hardcodeado
-      if (email === "admin@correo.com" && password === "admin") {
-        const admin = {
-          email,
-          nombre: "Administrador",
-          rol: "admin",
-        };
-        setUsuario(admin);
-        localStorage.setItem("usuario", JSON.stringify(admin));
-        return {
-          exito: true,
-          rol: "admin",
-          mensaje: "Inicio de sesión como administrador",
-        };
-      }
-
-      // Credenciales incorrectas
       return {
         exito: false,
         mensaje: "Correo o contraseña incorrectos",

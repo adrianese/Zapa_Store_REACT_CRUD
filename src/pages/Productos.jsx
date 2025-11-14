@@ -112,10 +112,10 @@ const Productos = () => {
   );
 
   return (
-    <div className="contenedor seccion">
+    <div className=" seccion">
       <Buscador productos={productos} onFiltrar={setProductosFiltrados} />
 
-      <div className="contenedor-anuncios">
+      <div className="contenedor-productos">
         {productosFiltrados.map((producto) => (
           <ProductoCard
             key={producto.id}
